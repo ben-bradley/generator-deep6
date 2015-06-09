@@ -1,4 +1,3 @@
-
 var gulp = require('gulp'),
   path = require('path'),
   debug = require('debug')('gulpfile'),
@@ -8,24 +7,18 @@ var gulp = require('gulp'),
 
 var sources = 'src/**/*.js';
 
-gulp.task('build', function () {
-  return build(sources)
-})
-
-gulp.task('watch', ['build'], function () {
+function watch() {
   return gulp.watch(sources, function (ev) {
     return build(ev.path)
   })
-})
-
-gulp.task('nodemon', monitor)
+}
 
 function monitor() {
   return nodemon({
     script: 'index.js',
     env: process.env,
     args: process.argv.slice(2),
-    watch: ['dist/*.js']
+    watch: ['dist/**/*.js']
   })
 }
 
@@ -34,21 +27,34 @@ function build(file) {
   dir = dir.substr(dir.indexOf('/src') + 5);
   if (dir === '**')
     dir = '';
-  debug('building: ', file, dir);
+  debug('building: ', file);
   return gulp.src(file)
     .pipe(babel())
     .pipe(gulp.dest('dist/' + dir))
 }
-
-gulp.task('test', test)
 
 function test() {
   debug('testing!');
   return run('NODE_ENV=test mocha -R spec').exec();
 }
 
-gulp.task('ci', ['test'], function () {
+function watchTest() {
   gulp.watch('dist/**/*.js', ['test'])
+  gulp.watch('test/spec.js', ['test'])
+}
+
+gulp.task('build', function () {
+  return build(sources)
 })
+
+gulp.task('watch', ['build'], watch)
+
+gulp.task('nodemon', monitor)
+
+gulp.task('test', test)
+
+gulp.task('ci', ['test'], watchTest)
+
+gulp.task('develop', ['watch'], watchTest)
 
 gulp.task('default', ['watch'], monitor)
