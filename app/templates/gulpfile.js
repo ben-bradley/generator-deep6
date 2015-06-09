@@ -31,7 +31,7 @@ function monitor() {
 
 function build(file) {
   var dir = path.dirname(file);
-  dir = dir.substr(dir.indexOf('src/') + 4);
+  dir = dir.substr(dir.indexOf('/src') + 5);
   if (dir === '**')
     dir = '';
   debug('building: ', file, dir);
