@@ -24,7 +24,8 @@ describe('deep6:app', function () {
       'index.js',
       'readme.md',
       'config/default.json',
-      'src/index.js'
+      'src/index.js',
+      'test/spec.js'
     ]);
   });
 });

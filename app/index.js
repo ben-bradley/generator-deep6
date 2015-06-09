@@ -59,10 +59,6 @@ module.exports = yeoman.generators.Base.extend({
       skipInstall: this.options['skip-install'],
       bower: false,
       callback: function() {
-//        var cwd = this.env.cwd,
-//          src = cwd + '/node_modules/font-awesome/fonts',
-//          dest = 'dist/client/fonts';
-//        this.directory(src, dest);
       }.bind(_this)
     });
   }
