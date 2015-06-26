@@ -20,6 +20,7 @@ describe('deep6:app', function () {
     assert.file([
       'package.json',
       '.gitignore',
+      '.jshintrc',
       'gulpfile.js',
       'index.js',
       'readme.md',
