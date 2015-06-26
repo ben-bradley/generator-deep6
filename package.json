@@ -1,6 +1,6 @@
 {
   "name": "generator-deep6",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Yeoman generator for creating a ES6-capable and TDD based application.",
   "license": "MIT",
   "main": "app/index.js",
@@ -22,6 +22,7 @@
   "keywords": [
     "yeoman-generator",
     "es6",
+    "es2015",
     "tdd",
     "babel",
     "gulp"
