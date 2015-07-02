@@ -1,11 +1,11 @@
 'use strict';
 
 var gulp = require('gulp'),
+  del = require('del'),
   path = require('path'),
   debug = require('debug')('gulpfile'),
   babel = require('gulp-babel'),
   nodemon = require('gulp-nodemon'),
-  clean = require('gulp-clean'),
   run = require('gulp-run');
 
 var sources = 'src/**/*.js';
@@ -46,11 +46,8 @@ function watchTest() {
   gulp.watch('test/spec.js', ['test']);
 }
 
-gulp.task('clean', function () {
-  return gulp.src('dist/**/*', {
-      read: false
-    })
-    .pipe(clean());
+gulp.task('clean', function (done) {
+  del('dist/**/*', done);
 });
 
 gulp.task('build', ['clean'], function () {

@@ -9,9 +9,9 @@
     "q": "^1.4.1"
   },
   "devDependencies": {
+    "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
-    "gulp-clean": "^0.3.1",
     "gulp-nodemon": "^2.0.3",
     "gulp-run": "^1.6.8",
     "mocha": "^2.2.5",
