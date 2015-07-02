@@ -1,26 +1,14 @@
+'use strict';
+
 var gulp = require('gulp'),
   path = require('path'),
   debug = require('debug')('gulpfile'),
   babel = require('gulp-babel'),
   nodemon = require('gulp-nodemon'),
+  clean = require('gulp-clean'),
   run = require('gulp-run');
 
 var sources = 'src/**/*.js';
-
-function watch() {
-  return gulp.watch(sources, function (ev) {
-    return build(ev.path)
-  })
-}
-
-function monitor() {
-  return nodemon({
-    script: 'index.js',
-    env: process.env,
-    args: process.argv.slice(2),
-    watch: ['dist/**/*.js']
-  })
-}
 
 function build(file) {
   var dir = path.dirname(file);
@@ -30,7 +18,22 @@ function build(file) {
   debug('building: ', file);
   return gulp.src(file)
     .pipe(babel())
-    .pipe(gulp.dest('dist/' + dir))
+    .pipe(gulp.dest('dist/' + dir));
+}
+
+function watch() {
+  return gulp.watch(sources, function (ev) {
+    return build(ev.path);
+  });
+}
+
+function monitor() {
+  return nodemon({
+    script: 'index.js',
+    env: process.env,
+    args: process.argv.slice(2),
+    watch: ['dist/**/*.js']
+  });
 }
 
 function test() {
@@ -39,22 +42,29 @@ function test() {
 }
 
 function watchTest() {
-  gulp.watch('dist/**/*.js', ['test'])
-  gulp.watch('test/spec.js', ['test'])
+  gulp.watch('dist/**/*.js', ['test']);
+  gulp.watch('test/spec.js', ['test']);
 }
 
-gulp.task('build', function () {
-  return build(sources)
-})
+gulp.task('clean', function () {
+  return gulp.src('dist/**/*', {
+      read: false
+    })
+    .pipe(clean());
+});
 
-gulp.task('watch', ['build'], watch)
+gulp.task('build', ['clean'], function () {
+  return build(sources);
+});
 
-gulp.task('nodemon', monitor)
+gulp.task('watch', ['build'], watch);
 
-gulp.task('test', test)
+gulp.task('nodemon', monitor);
 
-gulp.task('ci', ['test'], watchTest)
+gulp.task('test', test);
 
-gulp.task('develop', ['watch'], watchTest)
+gulp.task('ci', ['test'], watchTest);
 
-gulp.task('default', ['watch'], monitor)
+gulp.task('develop', ['watch'], watchTest);
+
+gulp.task('default', ['watch'], monitor);
