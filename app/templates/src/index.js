@@ -1,15 +1,16 @@
-let config = require('config'),
-  q = require('q');
+'use strict';
 
-let foo = require('./foo');
+import config from 'config';
+import q from 'q';
+import foo from './foo';
 
 let Promise = Promise || q.Promise;
 
 let promise = () => {
   return Promise((resolve, reject) => {
-    resolve(foo)
-  })
-}
+    resolve(foo);
+  });
+};
 
 promise()
   .then((foo) => {
@@ -17,5 +18,5 @@ promise()
     console.log(`baz = ${foo.baz}`);
   })
   .catch((err) => {
-    console.log('uhoh...')
-  })
+    console.log('uhoh...');
+  });
