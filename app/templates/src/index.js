@@ -1,13 +1,9 @@
 'use strict';
 
-import config from 'config';
-import q from 'q';
 import foo from './foo';
 
-let Promise = Promise || q.Promise;
-
 let promise = () => {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     resolve(foo);
   });
 };
@@ -18,5 +14,5 @@ promise()
     console.log(`baz = ${foo.baz}`);
   })
   .catch((err) => {
-    console.log('uhoh...');
+    throw new Error(err);
   });

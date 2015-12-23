@@ -36,10 +36,7 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
 
-      this.directory('config', 'config');
-      this.directory('example', 'example');
       this.directory('src', 'src');
-      this.directory('test', 'test');
 
       this.mkdir('dist');
 

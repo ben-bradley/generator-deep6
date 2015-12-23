@@ -24,9 +24,8 @@ describe('deep6:app', function () {
       'gulpfile.js',
       'index.js',
       'readme.md',
-      'config/default.json',
       'src/index.js',
-      'test/spec.js'
+      'src/test/spec.js'
     ]);
   });
 });

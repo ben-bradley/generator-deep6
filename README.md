@@ -5,13 +5,11 @@ The Deep6 generator will build out a very basic & simple ES6 development environ
 ## Directory structure
 
 ```
-config/
 dist/
 src/
   index.js
-  bar.js
-test/
-  spec.js
+  test/
+    spec.js
 gulpfile.js
 index.js
 package.json
@@ -51,3 +49,7 @@ If you'd prefer to execute your code manually:
 1. Start `$ gulp watch` (will detect changes in `src/` and rebuild)
 2. Edit & save code in `src/`
 3. Run your code `$ node ./index.js`
+
+## Versions
+
+- 0.0.8 - Removed `q`, `config`, and `debug` dependencies, moved `test/` into `src/test/`
