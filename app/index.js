@@ -25,6 +25,11 @@ module.exports = yeoman.generators.Base.extend({
       type: 'text',
       name: 'author',
       message: 'Who\'s name should I put as the author in the package.json?'
+    }, {
+      type: 'text',
+      name: 'description',
+      message: 'What should the description say?',
+      default: 'A basic template for deving an ES6 app'
     }];
 
     this.prompt(prompts, function (props) {

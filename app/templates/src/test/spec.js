@@ -1,14 +1,12 @@
-var should = require('should'),
-  config = require('config'),
-  debug = require('debug')('test/spec');
+'use strict';
 
-debug('starting tests...');
+import should from 'should';
 
-describe('Your test', function () {
+describe('Your test', () => {
 
-  it('should pass', function () {
-    debug('simple test');
+  it('should pass', (done) => {
     (1+1).should.eql(2);
-  })
+    done();
+  });
 
-})
+});
